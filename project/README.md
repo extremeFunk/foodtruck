@@ -39,13 +39,3 @@ In order to build the app you will need:
 
 After building you can start the app by running `python ./app.py`
 
-FROM python:3-alpine
-
-WORKDIR /app
-COPY ./flask-app /app
-
-RUN python3 -m pip install --no-cache-dir -r requirements.txt
-RUN chmod 777 /app/in
-
-CMD  python3 src/routing.py
-
