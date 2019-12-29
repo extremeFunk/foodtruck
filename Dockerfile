@@ -1,4 +1,4 @@
-FROM node:12.14.0-alpine3.9 as node
+FROM node:10.18.0-alpine3.9 as node
 COPY project/flask-app /app
 WORKDIR /app
 
