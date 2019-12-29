@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    app:
+        container_name: app
+        build:
+            dockerfile: Dockerfile.app
+        networks:
+            - backend
+
+    search:
+      container_name: search
+        build:
+            dockerfile: Dockerfile.search
+        ports:
+            - "9200:9200"
+        networks:
+            - backend
+        #volumes:
+        #    - dbtest:/docker-entrypoint-initdb.d
+networks:
+    backend:
+#volumes:
+#    dbtest:
+
+
