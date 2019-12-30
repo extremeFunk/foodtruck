@@ -1,11 +1,6 @@
-FROM node:10.18.0-alpine3.9 as node
-COPY /flask-app /app
-WORKDIR /app
-
-RUN npm install && npm run build
-
 FROM python:3-alpine
-COPY --from=node /app /app
+COPY flask-app/app.py /app/app.py
+COPY flask-app/requirements.txt /app/requirements.txt
 WORKDIR /app
 
 Run pip install -r requirements.txt

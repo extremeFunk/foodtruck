@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+    search:
+        container_name: es
+        build:
+            context: project
+            dockerfile: Dockerfile.search
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        networks:
+            - backend
+        #volumes:
+        #    - dbtest:/docker-entrypoint-initdb.d
+
+    app:
+        container_name: app
+        build:
+            context: project
+            dockerfile: Dockerfile.app
+        ports:
+            - 5000:5000
+        networks:
+            - backend
+        depends_on:
+            - search
+        environment:
+            - ENVIRONMENT_DEBUG = True
+
+
+    proxy:
+        container_name: proxy
+        build:
+            context: project
+            dockerfile: Dockerfile.proxy
+        ports:
+            - "80:80"
+        depends_on:
+          - app
+        networks:
+            - backend
+
+
+networks:
+    backend:
+#volumes:
+#    dbtest:

@@ -39,7 +39,7 @@ def writeToFile(data, filename="data.geojson"):
                 "features": data }
     with open(filename, "w") as f:
         json.dump(template, f, indent=2)
-    print "Geojson generated"
+    print ("Geojson generated")
 
 if __name__ == "__main__":
     data = getData("http://data.sfgov.org/resource/rqzj-sfat.json")
